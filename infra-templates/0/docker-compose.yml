@@ -1,0 +1,31 @@
+acpid:
+  image: joshwget/os
+  command: /usr/sbin/acpid -f
+  net: host
+  uts: host
+  privileged: true
+
+ntp:
+  image: joshwget/os
+  command: ntpd --nofork -g
+  net: host
+  uts: host
+  privileged: true
+  restart: always
+
+
+syslog:
+  image: joshwget/os
+  command: rsyslogd -n
+  net: host
+  uts: host
+  privileged: true
+  restart: always
+
+udev:
+  image: joshwget/os
+  command: udevd
+  net: host
+  uts: host
+  privileged: true
+  restart: always
