@@ -1,0 +1,7 @@
+.catalog:
+  name: os
+  version: v0.0.1
+  questions:
+  - variable: DATASOURCE
+    label: Datasource
+    type: string

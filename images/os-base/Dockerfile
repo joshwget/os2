@@ -1,20 +1,3 @@
-FROM alpine
-RUN apk add --no-cache \
-    bash \
-    e2fsprogs \
-    parted \
-    sfdisk \
-    openssh \
-    xz \
-    iproute2 \
-    dhcpcd \
-    eudev \
-    jq \
-    acpi \
-    rsync \
-    rsyslog \
-    sudo \
-    openntpd \
-    && rm -rf /var/lib/apk/*
-
-RUN rm -f /sbin/poweroff /sbin/shutdown /sbin/reboot /sbin/halt /usr/sbin/poweroff /usr/sbin/shutdown /usr/sbin/reboot /usr/sbin/halt /etc/motd
+FROM rancher/os-base:v0.8.0
+COPY ./ros /usr/bin/ros
+RUN sed -i 's/#Port 22/Port 23/g' /etc/ssh/sshd_config

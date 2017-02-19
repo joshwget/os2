@@ -1,0 +1,83 @@
+base:
+  image: joshwget/os
+  entrypoint: ros entrypoint
+  command: cat
+  stdin_open: true
+  labels:
+    io.rancher.scheduler.global: 'true'
+  volumes:
+  - /dev:/host/dev
+  - /etc/docker:/etc/docker
+  - /etc/hosts:/etc/hosts
+  - /etc/resolv.conf:/etc/resolv.conf
+  - /etc/ssl/certs/ca-certificates.crt:/etc/ssl/certs/ca-certificates.crt.rancher
+  - /etc/selinux:/etc/selinux
+  - /lib/firmware:/lib/firmware
+  - /lib/modules:/lib/modules
+  - /run:/run
+  - /usr/share/ros:/usr/share/ros
+  - /var/lib/rancher/cache:/var/lib/rancher/cache
+  - /var/lib/rancher/conf:/var/lib/rancher/conf
+  - /var/lib/rancher:/var/lib/rancher
+  - /var/log:/var/log
+  - /var/run:/var/run
+
+acpid:
+  extends:
+    service: base
+  command: /usr/sbin/acpid -f
+  net: host
+  uts: host
+  privileged: true
+
+cloud-init:
+  extends:
+    service: base
+  command: cloud-init-save
+  environment:
+    DATASOURCE: ${DATASOURCE}
+  net: host
+  uts: host
+  pid: host
+  ipc: host
+  privileged: true
+
+console:
+  extends:
+    service: base
+  command: ros console-init
+  labels:
+    io.rancher.os.console: default
+  net: host
+  uts: host
+  pid: host
+  ipc: host
+  privileged: true
+  restart: always
+
+ntp:
+  extends:
+    service: base
+  command: ntpd --nofork -g
+  net: host
+  uts: host
+  privileged: true
+  restart: always
+
+syslog:
+  extends:
+    service: base
+  command: rsyslogd -n
+  net: host
+  uts: host
+  privileged: true
+  restart: always
+
+udev:
+  extends:
+    service: base
+  command: udevd
+  net: host
+  uts: host
+  privileged: true
+  restart: always
