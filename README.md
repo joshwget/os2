@@ -5,4 +5,4 @@ Run system services in containers managed directly by Rancher. The end goal is t
 
 Add this repo as a [Rancher catalog](http://docs.rancher.com/rancher/latest/en/catalog/) and deploy the `os` template. Use `ec2` as the datasource for AWS or the location to a custom URL. This is the same as [RancherOS configuration](https://docs.rancher.com/os/configuration/).
 
-If an SSH key was provided then SSH will be available on port 23 (`ssh -p 23 rancher@...`). The `console` service will likely need to be restarted once after the initial deployment for this to work properly.
+If an SSH key was provided then SSH will be available on port 23 (`ssh -p 23 rancher@...`).
