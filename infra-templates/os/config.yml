@@ -2,3 +2,4 @@ name: RancherOS
 description: Deploy RancherOS via Rancher
 version: v0.0.1
 category: os
+projectURL: https://github.com/joshwget/os2
