@@ -5,3 +5,7 @@
   - variable: DATASOURCE
     label: Datasource
     type: string
+  - variable: BASE_IMAGE
+    label: Base Image
+    type: string
+    default: joshwget/os-base

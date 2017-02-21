@@ -1,5 +1,5 @@
 base:
-  image: joshwget/os-base
+  image: ${BASE_IMAGE}
   entrypoint: ros entrypoint
   command: cat
   stdin_open: true
