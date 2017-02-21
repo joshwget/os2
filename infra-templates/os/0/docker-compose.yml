@@ -3,6 +3,7 @@ base:
   entrypoint: ros entrypoint
   command: cat
   stdin_open: true
+  restart: always
   labels:
     io.rancher.scheduler.global: 'true'
   volumes:
@@ -30,7 +31,6 @@ acpid:
   net: host
   uts: host
   privileged: true
-  restart: always
 
 cloud-init:
   extends:
@@ -43,7 +43,6 @@ cloud-init:
   pid: host
   ipc: host
   privileged: true
-  restart: always
 
 console:
   extends:
@@ -56,7 +55,6 @@ console:
   pid: host
   ipc: host
   privileged: true
-  restart: always
 
 ntp:
   extends:
@@ -65,7 +63,6 @@ ntp:
   net: host
   uts: host
   privileged: true
-  restart: always
 
 syslog:
   extends:
@@ -74,7 +71,6 @@ syslog:
   net: host
   uts: host
   privileged: true
-  restart: always
 
 udev:
   extends:
@@ -83,4 +79,3 @@ udev:
   net: host
   uts: host
   privileged: true
-  restart: always
