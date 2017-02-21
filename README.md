@@ -6,3 +6,8 @@ Run system services in containers managed directly by Rancher. The end goal is t
 Add this repo as a [Rancher catalog](http://docs.rancher.com/rancher/latest/en/catalog/) and deploy the `os` template. Use `ec2` as the datasource for AWS or the location to a custom URL. This is the same as [RancherOS configuration](https://docs.rancher.com/os/configuration/).
 
 If an SSH key was provided then SSH will be available on port 23 (`ssh -p 23 rancher@...`).
+
+## Building
+
+1. Build the `ros` binary from https://github.com/joshwget/os/tree/os2
+2. Build the `os-base` image from the `images/os-base/` directory using the binary built from the previous step
