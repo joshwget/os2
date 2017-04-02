@@ -1,0 +1,156 @@
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: acpid
+  labels:
+    app: rancheros
+spec:
+  template:
+    metadata:
+      labels:
+        name: acpid
+    spec:
+      hostPID: true
+      hostIPC: true
+      hostNetwork: true
+      containers:
+        - image: {{ .Values.image }}
+          securityContext:
+            privileged: true
+          name: acpid
+          command: [ "ros", "entrypoint", "/usr/sbin/acpid", "-f" ]
+{{ template "volumeMounts" . }}
+{{ template "volumes" . }}
+
+---
+
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: cloud-init
+  labels:
+    app: rancheros
+spec:
+  template:
+    metadata:
+      labels:
+        name: cloud-init
+    spec:
+      hostPID: true
+      hostIPC: true
+      hostNetwork: true
+      containers:
+        - image: {{ .Values.image }}
+          securityContext:
+            privileged: true
+          name: cloud-init
+          command: [ "ros", "entrypoint", "cloud-init-save" ]
+{{ template "volumeMounts" . }}
+{{ template "volumes" . }}
+
+---
+
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: console
+  labels:
+    app: rancheros
+spec:
+  template:
+    metadata:
+      labels:
+        name: console
+    spec:
+      hostPID: true
+      hostIPC: true
+      hostNetwork: true
+      containers:
+        - image: {{ .Values.image }}
+          securityContext:
+            privileged: true
+          name: console
+          env:
+            - name: DATASOURCE
+              value: {{ .Values.datasource }}
+          command: [ "ros", "entrypoint", "ros", "console-init" ]
+{{ template "volumeMounts" . }}
+{{ template "volumes" . }}
+
+---
+
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: ntp
+  labels:
+    app: rancheros
+spec:
+  template:
+    metadata:
+      labels:
+        name: ntp
+    spec:
+      hostPID: true
+      hostIPC: true
+      hostNetwork: true
+      containers:
+        - image: {{ .Values.image }}
+          securityContext:
+            privileged: true
+          name: ntp
+          command: [ "ros", "entrypoint", "ntpd", "--nofork", "-g" ]
+{{ template "volumeMounts" . }}
+{{ template "volumes" . }}
+
+---
+
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: syslog
+  labels:
+    app: rancheros
+spec:
+  template:
+    metadata:
+      labels:
+        name: syslog
+    spec:
+      hostPID: true
+      hostIPC: true
+      hostNetwork: true
+      containers:
+        - image: {{ .Values.image }}
+          securityContext:
+            privileged: true
+          name: syslog
+          command: [ "ros", "entrypoint", "rsyslogd", "-n" ]
+{{ template "volumeMounts" . }}
+{{ template "volumes" . }}
+
+---
+
+apiVersion: extensions/v1beta1
+kind: DaemonSet
+metadata:
+  name: udev
+  labels:
+    app: rancheros
+spec:
+  template:
+    metadata:
+      labels:
+        name: udev
+    spec:
+      hostPID: true
+      hostIPC: true
+      hostNetwork: true
+      containers:
+        - image: {{ .Values.image }}
+          securityContext:
+            privileged: true
+          name: udev
+          command: [ "ros", "entrypoint", "udevd" ]
+{{ template "volumeMounts" . }}
+{{ template "volumes" . }}
