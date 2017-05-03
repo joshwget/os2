@@ -1,4 +1,4 @@
-Like [RancherOS](https://github.com/rancher/os) except that all system services are managed by a container orchestration system (Cattle and Kubernetes so far). The end goal is the ability to replace the currently running distro using something like [takeover.sh](github.com/marcan/takeover.sh).
+Like [RancherOS](https://github.com/rancher/os) except that all system services are managed by a container orchestration system (Cattle and Kubernetes so far). The end goal is the ability to replace the currently running distro using something like [takeover.sh](https://github.com/marcan/takeover.sh).
 
 > Note: This is very, very experimental. Don't deploy this on anything you don't want to break.
 
@@ -6,7 +6,7 @@ Like [RancherOS](https://github.com/rancher/os) except that all system services 
 
 ### Deploying via Cattle
 
-Add this repo as a [Rancher catalog](http://docs.rancher.com/rancher/latest/en/catalog/) and deploy the `os` template.
+Add this repo as a [Rancher catalog](https://docs.rancher.com/rancher/latest/en/catalog/) and deploy the `os` template.
 
 ### Deploying via Kubernetes
 
